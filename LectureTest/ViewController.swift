@@ -23,24 +23,16 @@ class ViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     @IBAction func birthdayEditing(_ sender: UITextField) {
-        
         let datePickerView:UIDatePicker = UIDatePicker()
-        
         datePickerView.datePickerMode = UIDatePickerMode.date
-        
         sender.inputView = datePickerView
-        
         datePickerView.addTarget(self, action: #selector(ViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {
-        
         let dateFormatter = DateFormatter()
-        
         dateFormatter.dateStyle = .medium
-        
         dateFormatter.timeStyle = .none
-        
         birthdayTextField.text = dateFormatter.string(from: sender.date)
         
     }
@@ -53,8 +45,6 @@ class ViewController: UIViewController {
                 desitnationVC.nameToDisplay = nameTextField.text!
                 print(nameTextField.text)
             }
-            
-                
             
         }
     }
