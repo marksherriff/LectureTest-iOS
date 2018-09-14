@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         datePickerView.addTarget(self, action: #selector(ViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
     }
     
-    func datePickerValueChanged(sender:UIDatePicker) {
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
@@ -39,11 +39,9 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "NewMessageSegue"){
-            print(segue.destination)
-            if let destinationNC = segue.destination as? UINavigationController {
-                let desitnationVC = destinationNC.topViewController as! NewMessageViewController
-                desitnationVC.nameToDisplay = nameTextField.text!
-                print(nameTextField.text)
+            if let destinationVC = segue.destination as? NewMessageViewController {
+                destinationVC.nameToDisplay = nameTextField.text!
+                print(nameTextField.text!)
             }
             
         }
@@ -55,7 +53,7 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
